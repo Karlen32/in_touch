@@ -41,4 +41,5 @@ Desktop.ini
 .DS_Store
 ehthumbs.db
 Icon?
-in_touch/utils/credentials.py
+utils/credentials.py
+localstorage.json

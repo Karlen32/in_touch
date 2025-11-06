@@ -1,3 +1,6 @@
+from tkinter import Image
+
+
 class Credentials:
     DOCTOR = {
         "email": "arabadzhyan89@mail.ru",
@@ -28,3 +31,5 @@ class Credentials:
         "email": "wrong_user@test.com",
         "password": "WrongPass123!"
     }
+
+    

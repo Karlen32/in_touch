@@ -10,7 +10,7 @@ class LoginLocators:
     # Ошибки
     ERROR_MESSAGE = (By.CSS_SELECTOR, "div.error__text_login > div")
     PASSWORD_ERROR_MESSAGE = (By.XPATH, "//div[contains(text(), 'Password must be at least 8 characters long')]")
-
+    ERROR_MESSAGE_EMAIL = (By.CSS_SELECTOR, "div.error__text_login > div")
     # Валидация
     RED_BORDER = (By.CSS_SELECTOR, ".input.error")
 

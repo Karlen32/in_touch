@@ -4,21 +4,45 @@ class AddAssignmentTexts:
     # Заголовки и описания
     TITLE = "Daily English Practice — Lesson 1"
     DESCRIPTION = "This lesson helps students practice basic English conversation and vocabulary."
+    
+    # редактирование
+    EDIT_TITLE = " edited"
+    EDIT_DESCRIPTION = " edited"
+
 
     # Поиск
     SEARCH_KEYWORD = "grammar"
+    # редактирование
+    EDIT_SEARCH_KEYWORD = "animals"
 
-    # Тип задания
+
+    # Тип задания    № Nbg pflfybz
     TYPE = "lesson"
+    # редактирование
+    EDIT_TYPE = "exercise"
+
     LANGUAGE = "English"
+    # редактироване
+    EDIT_LANGUAGE = "French"
 
     # Вопросы (по типам)
     OPEN_QUESTION = "Describe your favorite book in English."
     PARAGRAPH_QUESTION = "Write a short paragraph about your weekend."
-    SINGLE_CHOICE_QUESTION = "Choose the correct synonym for 'happy'."
-    MULTIPLE_CHOICE_QUESTION = "Select all adjectives that describe a person."
+    SINGLE_QUESTION = "Choose the correct synonym for 'happy'."
+    MULTIPLE_QUESTION = "Select all adjectives that describe a person."
     RANGE_QUESTION = "How confident do you feel about your speaking skills?"
     IMAGE_QUESTION = "What do you see in the picture?"
+
+
+    # редоктирование 
+    EDIT_OPEN_QUESTION = " edited"
+    EDIT_PARAGRAPH_QUESTION = " edited"
+    EDIT_SINGLE_QUESTION = " edited"
+    EDIT_MULTIPLE_QUESTION = " edited"
+    EDIT_RANGE_QUESTION = " edited"
+    EDIT_IMAGE_QUESTION = " edited"
+
+
 
      # --- Single Choice Question ---
     SINGLE_CHOICE_QUESTION = "Choose the correct synonym for 'happy'."
@@ -26,7 +50,7 @@ class AddAssignmentTexts:
         "Joyful",
         "Sad",
         "Excited",
-        "Angry"
+        "Edited"
     ]
 
     # --- Multiple Choice Question ---
@@ -35,7 +59,7 @@ class AddAssignmentTexts:
         "Kind",
         "Optimistic",
         "Lazy",
-        "Honest"
+        "Edited"
     ]
 
     # Шкала
@@ -44,6 +68,5 @@ class AddAssignmentTexts:
     RANGE_MIN = 1
     RANGE_MAX = 10
 
-    # Изображение
-    IMAGE_HEADLINE = "Describe what this image represents"
+    
 

@@ -1,6 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators import OnboardingLocators, AddAssignmentOnboardingLocators, ClientOnboardingLocators
+from locators.onboarding_locators import OnboardingLocators, AddAssignmentOnboardingLocators, ClientOnboardingLocators
 from data.texts_onboarding  import OnboardingTexts, AddAssignmentOnboardingTexts, ClientOnboardingTexts
 
 
@@ -19,15 +19,8 @@ class TestOnboarding:
 
         # --- Steps 2–10 ---
         steps = [
-            (OnboardingLocators.STEP_2_MESSAGE, OnboardingTexts.STEP_2_MESSAGE),
-            (OnboardingLocators.STEP_3_MESSAGE, OnboardingTexts.STEP_3_MESSAGE),
-            (OnboardingLocators.STEP_4_MESSAGE, OnboardingTexts.STEP_4_MESSAGE),
-            (OnboardingLocators.STEP_5_MESSAGE, OnboardingTexts.STEP_5_MESSAGE),
-            (OnboardingLocators.STEP_6_MESSAGE, OnboardingTexts.STEP_6_MESSAGE),
-            (OnboardingLocators.STEP_7_MESSAGE, OnboardingTexts.STEP_7_MESSAGE),
-            (OnboardingLocators.STEP_8_MESSAGE, OnboardingTexts.STEP_8_MESSAGE),
-            (OnboardingLocators.STEP_9_MESSAGE, OnboardingTexts.STEP_9_MESSAGE),
-            (OnboardingLocators.STEP_10_MESSAGE, OnboardingTexts.STEP_10_MESSAGE),
+            (OnboardingLocators.STEP_MESSAGES[i], getattr(OnboardingTexts, f"STEP_{i}_MESSAGE"))
+            for i in range(2, 11)
         ]
 
         for locator, expected_text in steps:
@@ -58,11 +51,11 @@ class TestOnboarding:
         driver.find_element(*AddAssignmentOnboardingLocators.ADD_ASSIGNMENT_BUTTON).click()
 
         add_steps = [
-            (AddAssignmentOnboardingLocators.STEP_1_MESSAGE_ADDASSIG, AddAssignmentOnboardingTexts.STEP_1_MESSAGE_ASSIG),
-            (AddAssignmentOnboardingLocators.STEP_2_MESSAGE_ADDASSIG, AddAssignmentOnboardingTexts.STEP_2_MESSAGE_ASSIG),
-            (AddAssignmentOnboardingLocators.STEP_3_MESSAGE_ADDASSIG, AddAssignmentOnboardingTexts.STEP_3_MESSAGE_ASSIG),
-            (AddAssignmentOnboardingLocators.STEP_4_MESSAGE_ADDASSIG, AddAssignmentOnboardingTexts.STEP_4_MESSAGE_ASSIG),
-            (AddAssignmentOnboardingLocators.STEP_5_MESSAGE_ADDASSIG, AddAssignmentOnboardingTexts.STEP_5_MESSAGE_ASSIG),
+            (
+                getattr(AddAssignmentOnboardingLocators, f"STEP_{i}_MESSAGE_ADDASSIG"),
+                getattr(AddAssignmentOnboardingTexts, f"STEP_{i}_MESSAGE_ASSIG")
+            )
+            for i in range(1, 6)
         ]
         self._run_onboarding_steps(driver, add_steps)
 
