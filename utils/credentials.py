@@ -1,4 +1,3 @@
-from tkinter import Image
 
 
 class Credentials:
