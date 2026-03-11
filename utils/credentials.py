@@ -1,34 +1,34 @@
 
 
 class Credentials:
+    """Тестовые учётные данные (НЕ боевые)."""
+
     DOCTOR = {
-        "email": "arabadzhyan89@mail.ru",
-        "password": "David1989"
+        "email": "doctor@example.com",
+        "password": "Password123!",
     }
 
     CLIENT = {
-        "email": "karlen28@proton.me",
-        "password": "David1989"
+        "email": "client@example.com",
+        "password": "Password123!",
     }
 
     ADMIN = {
-        "email": "v.y.maklakova@gmail.com",
-        "password": "ForUs24!Test"
+        "email": "admin@example.com",
+        "password": "Password123!",
     }
 
     INVALID_EMAIL = {
-        "email": "arabadzhyan89#mail.ru",
-        "password": "David1989"
+        "email": "invalid_email_format",
+        "password": "Password123!",
     }
 
     INVALID_PASSWORD = {
-        "email": "arabadzhyan89#mail.ru",
-        "password": "1989"
+        "email": DOCTOR["email"],
+        "password": "short",
     }
 
     INVALID_CREDENTIALS = {
-        "email": "wrong_user@test.com",
-        "password": "WrongPass123!"
+        "email": "unknown_user@example.com",
+        "password": "WrongPass123!",
     }
-
-    

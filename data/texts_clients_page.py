@@ -10,6 +10,8 @@ class ClientsPagetexts:
     DELETE_CONFIRM_TEXT_2 = "Once deleted, all the client's data will be removed from your account"
     SHARE_MODAL_TEXT = "Choose assignment you want to share"
     RECALL_ASSIGNMENT_TEXT = "Are you sure you want to recall this assignment from client?"
+    SHARE_ASSIGNMENT_SUCCESS_TEXT = "Assignment has been successfully sent!"
 
-
-
+    # библеотека
+    SHARE_MODAL_TEXT1 = "Share assignment with..."
+    SHARE_ASSIGNMENT_SUCCESS_TEXT1 = "Assignment has been successfully shared!"
