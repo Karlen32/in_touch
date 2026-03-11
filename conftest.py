@@ -11,17 +11,43 @@ from selenium.webdriver.common.keys import Keys
 from utils.credentials import Credentials
 from locators.login_locators import LoginLocators
 from urllib.parse import urlparse
-
+from pages.login_page import LoginPage
+from pages.doctor.clients_page import DoctorClientsPage
+from pages.doctor.add_assignment_page import AddAssignmentPage
+from pages.doctor.share_assignment_page import ShareAssignmentPage
 
 
 @pytest.fixture(scope="function")
 def driver():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
     driver.implicitly_wait(10)
     driver.get(Urls.BASE_URL)
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def login_page(driver):
+    """Page Object страницы логина."""
+    return LoginPage(driver)
+
+
+@pytest.fixture
+def doctor_clients_page(driver_with_storage):
+    """Page Object страницы клиентов врача (требует авторизованный driver)."""
+    return DoctorClientsPage(driver_with_storage)
+
+
+@pytest.fixture
+def add_assignment_page(driver_with_storage):
+    """Page Object формы создания/редактирования задания и списка заданий."""
+    return AddAssignmentPage(driver_with_storage)
+
+
+@pytest.fixture
+def share_assignment_page(driver_with_storage):
+    """Page Object сценариев шаринга заданий клиенту."""
+    return ShareAssignmentPage(driver_with_storage)
 
 
 def get_origin(url: str) -> str:
@@ -62,11 +88,10 @@ def driver_with_storage(driver):
 
 @pytest.fixture
 def login_without_onboarding(driver):
-    """Авторизация врача с автоматическим закрытием онбординга"""
-    driver.get(Urls.LOGIN_URL)
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Credentials.DOCTOR["email"])
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Credentials.DOCTOR["password"])
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
+    """Авторизация врача с автоматическим закрытием онбординга."""
+    page = LoginPage(driver)
+    page.open_login()
+    page.login_as_doctor()
 
     # Ожидаем появления основной страницы или онбординга
     WebDriverWait(driver, 10).until(
@@ -87,22 +112,18 @@ def login_without_onboarding(driver):
 
 @pytest.fixture()
 def login_doctor(driver):
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Credentials.DOCTOR["email"])
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Credentials.DOCTOR["password"])
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-
-    WebDriverWait(driver, 5).until(EC.url_contains("/assignments"))
-    
+    page = LoginPage(driver)
+    page.open_login()
+    page.login_as_doctor()
+    page.expect_success_login(timeout=5)
     return driver
 
 
 @pytest.fixture()
 def login_client(driver):
-    driver.find_element(*LoginLocators.EMAIL_INPUT).send_keys(Credentials.CLIENT["email"])
-    driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(Credentials.CLIENT["password"])
-    driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
-
-    WebDriverWait(driver, 5).until(EC.url_contains("/assignments"))
-    
+    page = LoginPage(driver)
+    page.open_login()
+    page.login_as_client()
+    page.expect_success_login(timeout=5)
     return driver
 
